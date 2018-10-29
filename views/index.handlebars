@@ -1,0 +1,112 @@
+<h1>Eat-Da-Burger!</h1>
+
+<main>
+  <div class="container">
+    <div class="burger-before">
+      <div class="col s6">
+          <h4>Uneaten Burgers. Click to eat!</h4>
+
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <div>
+              <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+              </form>
+            </div>
+          {{/unless}}
+        {{/each}}
+      </div>
+
+      <div class="burger-after">
+          <h4>Eaten Burgers</h4>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <div class='burgerEaten'>
+              <div>
+                {{this.burger_name}}
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="submit-row">
+  <div class="col s12">
+    <form action="/burgers" method="POST">
+      <input type="text" id="name" name="burger_name" placeholder="">
+      <button type="submit" class="addBurgerButton">Submit</button>
+    </form>
+    <h5>"Enter a burger you want to eat and hit the submit button"<h5>
+  </div>
+</div>
+
+<style>
+
+    * {
+	box-sizing: border-box;
+}
+
+
+body {
+	background-color: #FFDC92;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 1em;
+	position: relative;
+}
+
+.container {
+	text-align: center;
+}
+
+.submit-row {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+	color: crimson;
+	letter-spacing: 2px;
+	margin-top: 2%;
+}
+
+h5 {
+	margin-top: 6%;
+	text-align: center;
+}
+
+img {
+	width: 7%;
+	margin-left: 46.5%;
+	margin-top: 3%;
+	margin-left: 46.5%;
+}
+
+form {
+	padding: 20px;
+}
+
+input#name {
+	width: 25%;
+	padding: 2%;
+}
+
+button.addBurgerButton {
+	position: absolute;
+	bottom: 8%;
+	left: 45%;
+	background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 10%;
+
+}
+
+</style>
